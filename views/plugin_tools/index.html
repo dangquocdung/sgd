@@ -1,0 +1,36 @@
+﻿{{extend 'plugin_tools/layout.html'}}
+
+<div class="placeholders">
+	
+		<div class="placeholder">
+				
+			<a href="{{=URL(f='select_table',args='backup')}}">
+				  <img class="img-responsive" src="{{=URL(c='static',f='plugin_tools/images/save.png')}}">
+				  <h4>Backup data</h4>
+			</a>
+		</div>
+		
+		<div class="placeholder">
+				
+			<a href="{{=URL(f='select_table',args='restore')}}">
+				  <img class="img-responsive" src="{{=URL(c='static',f='plugin_tools/images/reset.png')}}">
+				  <h4>Restore data</h4>
+			</a>
+		</div>
+		
+		<div class="placeholder">
+				
+			<a href="{{=URL(f='insert')}}">
+				  <img class="img-responsive" src="{{=URL(c='static',f='plugin_tools/images/import-128.png')}}">
+				  <h4>Import from excel</h4>
+			</a>
+		</div>
+		
+		<div class="placeholder">
+				
+			<a href="{{=URL(f='select_table',args='xls')}}">
+				  <img class="img-responsive" src="{{=URL(c='static',f='plugin_tools/images/share-128.png')}}">
+				  <h4>Export to excel</h4>
+			</a>
+		</div>
+	</div>

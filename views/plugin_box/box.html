@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Sortable - Connect lists</title>
+
+	<link href="{{=URL(r=request,c='static',f='jquery-ui/css/jquery-ui-1.10.4.custom.min.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='jquery-ui/js/jquery-1.10.2.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='jquery-ui/js/jquery-ui-1.10.4.custom.min.js')}}"></script>
+	
+  
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap-theme.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap-popover.js')}}"></script>
+    
+	<style>
+		.connectedSortable {border: 1px solid; margin:0px; min-height:80px;}
+	</style>
+	<script>
+	
+	// Get all items from a container
+	function getDiv(box){		
+		var div = '';
+		var childrens = document.getElementById(box).children;
+		var cls = document.getElementById(box).className;
+		if (cls=="") return '[[=cms.box("'+box+'")]]';
+		cls = cls.split(" ")[0];
+		for(var i = 0; i < childrens.length; i++) {
+			div += getDiv(childrens[i].id);
+		}		
+		return '<div class="'+cls+'">'+div+'</div>';
+	}	
+
+	function getHtml(){
+		var page = getDiv("container");
+		//var page = $("#container").html();
+		$.ajax({
+			url: "{{=URL(r=request,c='plugin_box',f='update',args=request.args)}}",
+			type: "GET",
+			data: {'page':page},
+			cache: false,
+			success: function (html) {
+				//$('#tags_cloud').html(html);
+			}
+		});				
+	}		
+
+	
+	$(function(){
+
+		$('.connectedSortable').sortable({
+			connectWith: ".connectedSortable",
+			placeholder: "ui-state-highlight",
+			helper:'clone'
+		});
+
+	})	
+	 
+	</script>
+</head>
+<body>
+ 
+
+ 
+<div class="container">
+	<div class="row">
+		{{rows = db(db.box.id>0).select()}}
+		<div id="sortable" class="connectedSortable">
+		{{for row in rows:}}
+			<img id = "{{=row.name}}" src="{{=URL(c='static',f='plugin_box/avatar',args=[row.avatar])}}" width="250px" height="80px"></img>
+		{{pass}}
+		</div>
+	</div> 
+</div> 
+</br>	
+</br>	
+<input type="button" id="btnok" value="Submit" onclick="getHtml();"></input> 
+
+{{=content}}
+
+</body>
+</html>

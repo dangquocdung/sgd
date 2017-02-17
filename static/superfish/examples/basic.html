@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Superfish dropdown menu example with full touch support for Android, iOS and Windows 8.</title>
+		<link rel="stylesheet" href="../dist/css/superfish.css" media="screen">
+		<style> body { max-width: 40em; } </style>
+		<script src="../dist/js/jquery.js"></script>
+		<script src="../dist/js/hoverIntent.js"></script>
+		<script src="../dist/js/superfish.js"></script>
+		<script>
+
+		(function($){ //create closure so we can safely use $ as alias for jQuery
+
+			$(document).ready(function(){
+
+				// initialise plugin
+				var example = $('.sf-menu').superfish({
+					//add options here if required
+				});
+
+				// buttons to demonstrate Superfish's public methods
+				$('.destroy').on('click', function(){
+					example.superfish('destroy');
+				});
+
+				$('.init').on('click', function(){
+					example.superfish();
+				});
+
+				$('.open').on('click', function(){
+					example.children('li:first').superfish('show');
+				});
+
+				$('.close').on('click', function(){
+					example.children('li:first').superfish('hide');
+				});
+			});
+
+		})(jQuery);
+
+
+		</script>
+	</head>
+	<body>
+		<ul class="sf-menu"><li><a href="/cms/portal/folder/Home">Accueil</a></li><li><a href="/cms/portal/folder/tintuc">tintuc</a><ul class="sf-menu"><li><a href="/cms/portal/folder/tintrongtinh">tintrongtinh</a></li><li><a href="/cms/portal/folder/tintrongnganh">tintrongnganh</a></li><li><a href="/cms/portal/folder/tinquocte">tinquocte</a></li></ul></li></ul>
+	</body>
+</html>

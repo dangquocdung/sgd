@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Sortable - Connect lists</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  
+  
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap-theme.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap-popover.js')}}"></script>
+   
+  
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<style>
+	#sortable1, #sortable2 , #sortable3{ list-style-type: none; margin: 0; padding: 0 0 2.5em; float: left; margin-top: 10px; width:100%;}
+	#sortable4 { list-style-type: none; margin: 0; padding: 0 0 2.5em; margin-right: 10px;}
+	#sortable1 li, #sortable2 li, #sortable3 li , #sortable4 li{ margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em;}
+	.ui-state-highlight { height: 2.0em; line-height: 1.2em; }
+	.clearfix {clear: both;}
+	</style>
+	<script>
+	$(function() {
+	$( "#sortable1, #sortable2, #sortable3, #sortable4" ).sortable({
+		connectWith: ".connectedSortable",
+		placeholder: "ui-state-highlight",
+		update: function(){
+			var itemStr = getItems('.container');
+			$.ajax({
+				url: "{{=URL(r=request,c='design',f='update',args=request.args)}}",
+				type: "GET",
+				data: {'box':itemStr},
+				cache: false,
+				success: function (html) {
+					//$('#tags_cloud').html(html);
+				}
+			});				
+		}		
+	}).disableSelection();
+	});
+	
+	
+	// Get all items from a container
+	function getItems(container)
+	{
+		var columns = [];
+		
+		$(container+ ' ul.connectedSortable').each(function(){
+			columns.push($(this).sortable('toArray').join(','));
+		});
+	 
+		return columns.join('|');
+	}
+	 
+	</script>
+</head>
+<body>
+ 
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">Project name</a>
+	</div>
+	<div class="navbar-collapse collapse">
+	  <form class="navbar-form navbar-right" role="form">
+		<div class="form-group">
+		  <input type="text" placeholder="Email" class="form-control">
+		</div>
+		<div class="form-group">
+		  <input type="password" placeholder="Password" class="form-control">
+		</div>
+		<button type="submit" class="btn btn-success">Sign in</button>
+	  </form>
+	</div><!--/.navbar-collapse -->
+  </div>
+</div> 
+<br/><br/><br/>
+<div class="container" id ="container">
+	<!-- Example row of columns -->
+	<div class="row">
+		<div class="col-md-4">
+			<ul id="sortable1" class="connectedSortable">
+			  <li id = "11" class="ui-state-default">Item 1</li>
+			  <li id = "12" class="ui-state-default">Item 2</li>
+			  <li id = "13" class="ui-state-default">Item 3</li>
+			  <li id = "14" class="ui-state-default">Item 4</li>
+			  <li id = "15" class="ui-state-default">Item 5</li>
+			</ul>
+		</div>
+ 
+		<div class="col-md-4">
+			<ul id="sortable2" class="connectedSortable">
+			  <li id = "21" class="ui-state-highlight">Item 1</li>
+			  <li id = "22" class="ui-state-highlight">Item 2</li>
+			  <li id = "23" class="ui-state-highlight">Item 3</li>
+			  <li id = "24" class="ui-state-highlight">Item 4</li>
+			  <li id = "25" class="ui-state-highlight">Item 5</li>
+			</ul>
+		</div>
+			 			 
+		<div class="col-md-4">
+			<ul id="sortable3" class="connectedSortable">
+			  <li id = "31" class="ui-state-highlight">Item 3.1</li>
+			  <li id = "32" class="ui-state-highlight">Item 3.2</li>
+			  <li id = "33" class="ui-state-highlight">Item 3.3</li>
+			  <li id = "34" class="ui-state-highlight">Item 3.4</li>
+			  <li id = "35" class="ui-state-highlight">Item 3.5</li>
+			</ul>
+		</div>
+	</div>
+	
+	<footer>			
+		<ul id="sortable4" class="connectedSortable">
+		  <li id = "41" class="ui-state-highlight">Item 4.1</li>
+		  <li id = "42" class="ui-state-highlight">Item 4.2</li>
+		  <li id = "43" class="ui-state-highlight">Item 4.3</li>
+		</ul>
+	</footer>
+</div>
+			
+
+<div class='clearfix'></div>
+  
+  
+</body>
+</html>

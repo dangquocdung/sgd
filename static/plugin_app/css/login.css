@@ -1,0 +1,45 @@
+@charset "utf-8";
+ 
+.wrapper_login {width:980px; margin:0 auto;}
+#login_lef {width:560px; float:left; padding-right:20px;}
+#login_right {width:425px; float:left;}
+#login_body_window {background: #FFF; border: 1px solid #E5E5E5; margin: 40px 0 0; padding: 20px 25px 15px; border-radius:10px 10px 10px 10px;}
+#login_body_window h2 {font-size: 16px; height: 16px;line-height: 17px;  margin: 0 0 1.2em; position: relative; color:#222; margin:0;}
+input[type="text"], input[type="password"], input[type="email"] {width:245px; }
+#web2py_user_form label {line-height:30px; margin-right:10px;}
+#web2py_user_form table tr  td {padding:8px 0;}
+#auth_user_remember {float:left;}
+.w2p_fw label {margin-top:-18px; margin-left:20px;}
+.features {margin:0; padding:0;}
+.features li {list-style:none; padding:10px 0;}
+.features li img {float:left;}
+.features .title {
+    font-size: 16px;
+    margin-bottom: 0.3em;
+}
+.features p {
+    margin: 0 0 0 68px;
+}
+.redtext {
+    color: #DD4B39;
+}
+.w2p_fw input[type='submit']{
+    background-color: #4D90FE;
+    background-image: -moz-linear-gradient(center top , #4D90FE, #4787ED);
+    border: 1px solid #3079ED;
+    color: #FFFFFF;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.site_name_login {color:#DD4B39 !important; font-size:27px !important;}
+.ghi_chu {font-style:italic; margin:10px 0; }
+
+
+.site_name_login {color:#DD4B39 !important; font-size:27px !important;}
+.bottom {bottom:0;  color:#000; background:#ccc; position:fixed; width:100%; padding:5px 0; line-height:20px;}
+.bottom #login_right {text-align:center;}
+#web2py_user_form .btn {width:100%;}
+#web2py_user_form  #auth_user_remember__row  td{margin-bottom:0;}
+#web2py_user_form  .string {height:32px;}
+#web2py_user_form  .password {height:32px;}
+.title_page {width:100%; text-align:center;text-transform: uppercase;}

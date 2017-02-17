@@ -1,0 +1,4 @@
+
+{{extend 'layout/%s'%(cms.folder_layout(request.args(0)))}}
+{{=cms.box('product_detail',tablename=request.args(1))}}
+<div class="fb-comments" data-href="http://hatinhtrade.com.vn{{=URL(c='portal',f='read',args=request.args,vars=request.vars)}}" data-version="v2.3" data-numposts="5"  data-order-by="time" data-width='100%'></div>

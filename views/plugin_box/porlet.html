@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Sortable - Connect lists</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  
+  
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap-theme.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap-popover.js')}}"></script>
+    
+	<style>
+		div {border:1px solid #ccc}
+		.column {float: left;padding-bottom: 10px;width: 300px;}
+	</style>
+	<script>
+	
+	// Get all items from a container
+	function getItems(container)
+	{
+		var sorted = '';
+		var nodeList = document.querySelectorAll(container);
+		for (var i = 0, length = nodeList.length; i < length; i++) {
+			if (sorted!='') {
+				sorted = sorted + ','
+			}
+			sorted = sorted + nodeList[i].id;
+		}
+		return sorted;
+	}
+	 
+	
+$(function(){
+
+    $('#sortable, #page').sortable({connectWith: ".connectedSortable",placeholder: "ui-state-highlight",helper:'clone'});
+
+})	
+	 
+	</script>
+</head>
+<body>
+ 
+
+ 
+<div class="container" id ="container">
+	<div class="row">
+		{{rows = db(db.box.id>0).select()}}
+			<div id="sortable" class="connectedSortable">
+		{{for row in rows:}}
+				<img src="{{=URL(c='static',f='plugin_box/avatar',args=[row.avatar])}}" width="250px" height="80px"></img>
+		{{pass}}
+			</div>
+	</div> 
+</div> 
+</br>	
+</br>	
+</br>	
+
+<div class="container" id ="container">
+	<div class="row connectedSortable" id="page">
+	1
+	</div>		
+	<div class="row connectedSortable" id="page">
+	2
+	</div>		
+	<div class="row connectedSortable" id="page">
+	3
+	</div>		
+</div>
+  
+</body>
+</html>

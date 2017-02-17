@@ -1,0 +1,19 @@
+
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_process/html5sortable/jquery.sortable.js')}}"></script>
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_process/jquery-menu/jquery-ui-1.10.3.custom.min.js')}}"></script>
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_process/jquery-menu/jquery.multi-open-accordion.js')}}"></script>
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_process/jquery-menu/jquery.cookie.js')}}"></script>
+<link href="{{=URL(r=request,c='static',f='plugin_process/jquery-menu/jquery-ui.css')}}" rel="stylesheet">
+
+<script src="{{=URL(r=request,c='static',f='plugin_app/menu_fish/superfish.js')}}" type="text/javascript"></script> 
+<link type="text/css" href="{{=URL(r=request,c='static',f='plugin_app/menu_fish/superfish.css')}}" rel="stylesheet" />
+	
+
+
+
+{{
+from plugin_process import ProcessCms
+menu = ProcessCms()
+}}
+{{=menu.menu_acc()}}
+

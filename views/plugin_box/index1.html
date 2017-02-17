@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Sortable - Connect lists</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  
+  
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap-theme.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap-popover.js')}}"></script>   
+	
+	<link href="{{=URL(r=request,c='static',f='plugin_box/contextMenu/context.standalone.css')}}" rel='stylesheet' type='text/css'/>
+	<link href="{{=URL(r=request,c='static',f='plugin_box/contextMenu/context.bootstrap.css')}}" rel='stylesheet' type='text/css'/>
+	<link href="{{=URL(r=request,c='static',f='plugin_box/contextMenu/demo.css')}}" rel='stylesheet' type='text/css'/>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_box/contextMenu/context.js')}}"></script>
+ 
+	<style>
+	.abc {border: 1px solid; margin:0px; min-height:80px;}
+	.container {height:800px}
+	.clearfix {clear: both;}
+	</style>
+
+			
+</head>
+
+<body>
+
+<div id="msg"></div>
+<input type="button" id="btnok" value="Submit" onclick="getHtml();"></input>
+
+<script>
+
+	function getBox(box){		
+		var matches = [];
+		var childrens = document.getElementById(box).children;
+		var cls = '"'+document.getElementById(box).className.split(" ")[0]+'"';
+		if (childrens.length==0) return cls;
+		for(var i = 0; i < childrens.length; i++) {
+			matches.push([getBox(childrens[i].id)]);
+		}		
+		return '['+cls+',['+matches.join(',')+']]';
+	}		
+
+	function getDiv(box){		
+		var div = '';
+		var childrens = document.getElementById(box).children;
+		var cls = document.getElementById(box).className.split(" ")[0];
+		if (childrens.length==0) return '<div class="'+cls+'"></div>';
+		for(var i = 0; i < childrens.length; i++) {
+			div += getDiv(childrens[i].id);
+		}		
+		return '<div class="'+cls+'">'+div+'</div>';
+	}		
+	
+	function getHtml(){
+		//var page = $("#container").removeAttr('id').html();
+		//var page = getBox("container");
+		var page = getDiv("container");
+		$.ajax({
+			url: "{{=URL(r=request,c='design',f='update',args=request.args)}}",
+			type: "GET",
+			data: {'page':page},
+			cache: false,
+			success: function (html) {
+				//$('#tags_cloud').html(html);
+			}
+		});				
+	}		
+
+	var divid='container';
+	function getId(e){
+		divid=e.target.id;
+		$("#msg").html(divid);
+		$("div").css("border","1px solid black");
+		$("#"+divid).css("border","3px solid red");
+	}
+
+	function makeid(){
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		for( var i=0; i < 10; i++ )
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+		return text;
+	}
+
+	$(document).ready(function(){
+		context.init({preventDoubleContext: false});
+		context.settings({compress: true});
+		context.attach('.contextmenu', [
+			{header: 'Add div'},
+			{text: 'Back', href: '#'},
+			{text: 'Reload', href: '#'},
+			{divider: true},
+			{text: 'Add col', subMenu: [
+				{{for i in range(1,13):}}	
+					{text: 'Col {{=i}}', action: function(e){
+						$( "#"+divid ).append( '<div class="col-md-{{=i}} contextmenu abc" id="'+makeid()+'" onmousemove="getId(event)"></div>' );
+					}},
+				{{pass}}				
+			]},
+			{divider: true},
+			{text: 'Add row', action: function(e){
+				var id = makeid();
+				$( "#"+divid ).append( '<div class="row contextmenu abc" id="'+id+'" onmousemove="getId(event)"></div>' );
+			}},
+			{text: 'Delete', action: function(e){
+				document.getElementById(divid).remove();
+			}},
+			{divider: true},
+			{text: 'Change id', action: function(e){
+				var id=prompt("Please enter new id","id1");
+				if (id!=null) {
+				  document.getElementById(divid).setAttribute("id", id);
+				}
+			}},
+			
+		]);
+	});	
+</script>
+
+
+<div class="container contextmenu" id ="container" onmousemove="getId(event);">
+</div>
+ 
+			    
+</body>
+</html>

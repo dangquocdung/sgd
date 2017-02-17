@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Sortable - Connect lists</title>
+
+	<link href="{{=URL(r=request,c='static',f='jquery-ui/css/jquery-ui-1.10.4.custom.min.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='jquery-ui/js/jquery-1.10.2.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='jquery-ui/js/jquery-ui-1.10.4.custom.min.js')}}"></script>
+	
+  
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap-theme.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap-popover.js')}}"></script>
+    
+	<style>
+	</style>
+	<script>
+	</script>
+</head>
+<body>
+{{
+from plugin_box import Box
+plugin_box = Box()
+}} 
+
+<div class="container" id ="container">
+	<div class="row connectedSortable" id="page1">
+		{{=plugin_box.renderBox(11)}}
+	</div>		
+	<div class="row connectedSortable" id="page2">
+		{{=plugin_box.renderBox(12)}}
+	</div>	
+</div>
+</body>
+</html>

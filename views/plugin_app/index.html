@@ -1,0 +1,33 @@
+{{extend 'plugin_app/layout.html'}}
+<br/>
+<br/>
+{{ menu_link= cms.define_table(tablename ='menu_link',migrate=True)}}
+{{rows=cms.db(menu_link.r_menu_type==1).select(orderby=menu_link.weight)}}
+<div class="wrapper_dashboard">
+	<h1 class="page-header">Bảng điều khiển</h1>
+	<div class="placeholders">
+	
+		{{for row in rows:}}
+		{{if (auth.has_membership(role='admin') or auth.has_membership(role=row.role)):}}
+		<div class="placeholder">
+			{{tmp = row.url.split('/')
+				if len(tmp)>1:
+					c, f = tmp[0], tmp[1] 
+				else: 
+					c =  tmp[0]
+					f = 'index'
+				pass
+				url = URL(r=request,c=c,f=f,extension='html')	
+			}}	
+			<a href="{{=url}}">
+			  <img  class="img-responsive" src="{{=cms.get_avatar('menu_link',row.img_upload)}}">
+			  <h4>{{=row.name}}</h4>
+			 </a>
+		</div>
+		{{pass}}
+		{{pass}}
+		
+		
+		
+	</div>
+</div>

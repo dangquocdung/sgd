@@ -1,0 +1,100 @@
+{{extend 'plugin_process/layout.html'}}
+<link href="{{=URL(r=request,c='static',f='plugin_app/colorbox/colorbox.css')}}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_app/colorbox/jquery.colorbox.js')}}"></script>
+<script src="{{=URL(r=request,c='static',f='plugin_app/jtree/lib/jquery.cookie.js')}}" type="text/javascript"></script>
+<script src="{{=URL(r=request,c='static',f='plugin_app/jtree/jquery.treeview.js')}}" type="text/javascript"></script>
+<link href="{{=URL(r=request,c='static',f='plugin_app/jtree/jquery.treeview.css')}}" rel="stylesheet" type="text/css" />
+<div id='explorer'>
+{{=content}}
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.button_process_True').click(function () {
+			if ($("#process_id input:checked").length == 0) {
+				return 0
+			}
+			var r=confirm( "Chấp nhận " + $(this).children('span').children('span').html() + " " + $("input:checked").length.toString() + " {{=T(request.args(2) or '')}} đã chọn?");
+			if (r==false) {
+				return 0;
+			} 
+			var data = $.map($("#process_id input:checked"), function(elem, idx) {return "&"+$(elem).attr("name")+"="+ $(elem).val();}).join('');	
+			data = data + "&process=" + $(this).attr("id").split('_')[1];
+			return data
+			$.ajax({
+				url: "{{=URL(r=request,c='plugin_process',f='process.load',args=request.args,vars=request.vars)}}",
+				type: "GET",
+				data: data,
+				cache: true,
+				success: function (html) {
+					if (html!='') {
+						$.colorbox({html:html});
+					}
+				}
+			});				
+		});		
+
+		$('.button_process_False').click(function () {
+			if ($("#process_id input:checked").length == 0) {
+				return 0
+			}
+			var data = $.map($("#process_id input:checked"), function(elem, idx) {return "&"+$(elem).attr("name")+"="+ $(elem).val();}).join('');	
+			data = data + "&process=" + $(this).attr("id").split('_')[1];
+			$.ajax({
+				url: "{{=URL(r=request,c='plugin_process',f='process.load',args=request.args,vars=request.vars)}}",
+				type: "GET",
+				data: data,
+				cache: true,
+				success: function (html) {
+					if (html!='') {
+						$.colorbox({html:html});
+					}
+				}
+			});				
+		});		
+
+		$('.button_process_lock').click(function () {
+			if ($("#process_id input:checked").length == 0) {
+				return 0
+			}
+			
+			var comment = prompt("{{=T('Lý do check in')}}", "cập nhật phiên bản mới");
+			if (comment == null) {
+				return 0;
+			}			
+			
+			var data = $.map($("#process_id input:checked"), function(elem, idx) {return "&"+$(elem).attr("name")+"="+ $(elem).val();}).join('');	
+			data = data + "&comment_lock="+comment+"&process=" + $(this).attr("id").split('_')[1];
+			$.ajax({
+				url: "{{=URL(r=request,c='plugin_process',f='process.load',args=request.args,vars=request.vars)}}",
+				type: "GET",
+				data: data,
+				cache: true,
+				success: function (html) {
+					location.reload();
+				}
+			});				
+		});			
+
+		$('.button_process_unlock').click(function () {
+			if ($("#process_id input:checked").length == 0) {
+				return 0
+			}
+			var data = $.map($("#process_id input:checked"), function(elem, idx) {return "&"+$(elem).attr("name")+"="+ $(elem).val();}).join('');	
+			data = data + "&comment_unlock=''&process=" + $(this).attr("id").split('_')[1];
+			$.ajax({
+				url: "{{=URL(r=request,c='plugin_process',f='process.load',args=request.args,vars=request.vars)}}",
+				type: "GET",
+				data: data,
+				cache: true,
+				success: function (html) {
+					location.reload();
+				}
+			});				
+		});				
+		
+	});
+</script>
+<script src="{{=URL(r=request,c='static',f='js/jquery.collapsible.js')}}" type="text/javascript"></script>
+<div id="wrap_menu_left">
+

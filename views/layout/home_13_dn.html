@@ -1,0 +1,263 @@
+<!--[if HTML5]><![endif]-->
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js" lang="{{=T.accepted_language or 'en'}}" xmlns:fb='http://www.facebook.com/2008/fbml' >
+ <!--<![endif]-->
+ <head>
+ {{=cms.metadc()}}
+  <!--[if !HTML5]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+  <![endif]-->
+  <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+  <!-- Always force latest IE rendering engine
+       (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <meta charset="utf-8"/>
+  <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+  <meta content="{{=request.application}}" name="application-name"/>
+  <!-- Speaking of Google, don't forget to set your site up:
+       http://google.com/webmasters -->
+  <meta content="" name="google-site-verification"/>
+  <!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+        device-width: Occupy full width of the screen in its current orientation
+        initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+        user-scalable = yes allows the user to zoom in -->
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="{{=URL('static','images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
+   <link href="{{=URL('static','images/favicon.png')}}" rel="apple-touch-icon">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+       HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr.custom.js')}}">
+    </script>
+    <!-- include stylesheets -->
+
+
+    {{
+  response.files.insert(0,URL('static','css/web2py.css'))
+  response.files.insert(1,URL('static','bootstrap/css/bootstrap.css'))
+  response.files.insert(1,URL('static','bootstrap/css/bootstrap-theme.css'))
+  response.files.insert(2,URL('static','css/bootstrap-responsive.min.css'))
+  response.files.insert(3,URL('static','css/web2py_bootstrap.css'))
+	response.files.insert(3,URL('static','rmenu/css/default.css'))
+	response.files.insert(3,URL('static','rmenu/css/component.css'))
+  response.files.insert(3,URL('static','css/user.css'))
+  response.files.append(URL(request.application,'static','plugin_app/js/clock.js'))
+  }}
+
+  {{include 'web2py_ajax.html'}}
+    <script src="{{=URL('static','js/bootstrap.min.js')}}">
+    </script>
+    <script src="{{=URL('static','js/web2py_bootstrap.js')}}">
+    </script>
+    <script src="{{=URL('static','js/slidernews.js')}}">
+    </script>
+    <script src="{{=URL('static','superfish/dist/js/hoverIntent.js')}}">
+    </script>
+    <script src="{{=URL('static','superfish/dist/js/superfish.js')}}">
+    </script>
+	  <script src="{{=URL('static','js/jquery.printElement.js')}}">
+    </script>
+    <link href="{{=URL('static', 'superfish/dist/css/superfish.css')}}" rel="stylesheet" type="text/css"/>
+    <noscript>
+     <link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css"/>
+    </noscript>
+   </link>
+  </link>
+  <!--[if lt IE 9]>
+	 <link href="{{=URL('static', 'css/ie8.css')}}" rel="stylesheet" type="text/css"/>
+ <![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="fb:app_id" content="{693454617454149}" />
+
+ </head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+{{class_style=''}}
+{{ if request.cookies.has_key('style_id_sgd'):}}
+	{{class_style = request.cookies['style_id_sgd'].value}}
+{{pass}}
+{{ if request.cookies.has_key('style_layout'):}}
+	{{class_style = class_style + ' '+request.cookies['style_layout'].value}}
+{{pass}}
+
+ <body>
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3&appId=693454617454149";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+	<div style="  position: fixed;  top: 0; left: 0;  z-index: 1000;  width: 100%;  display: inline;  width: 100%; background: #ccc;" class="hidden-desktop hidden-tablet ">
+		<div class="demo-0">
+				<div id="dl-menu" class="dl-menuwrapper">
+						<button class="dl-trigger">Open Menu</button>
+					{{=cms.menu(folder=246,deep=1,ul_class='dl-menu',ul_class_2='dl-submenu',ul_class_3='dl-submenu',ul_class_4='dl-submenu')}}
+				</div><!-- /dl-menuwrapper -->
+		</div><!-- /demo-2 -->
+		</div>
+			
+		<script src="{{=URL('static','rmenu/js/modernizr.custom.js')}}"></script>
+		<script src="{{=URL('static','rmenu/js/jquery.dlmenu.js')}}"></script>
+			<script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu({
+					animationClasses : { classin : 'dl-animate-in-3', classout : 'dl-animate-out-3' }
+				});
+			});
+		</script>
+		
+
+
+ <script>
+$(document).ready(function(){
+    $("#mau1").click(function(){
+       
+		$( "#wr_body" ).removeClass( "mau5" )
+		$( "#wr_body" ).removeClass( "mau4" )
+		$( "#wr_body" ).removeClass( "mau3" )
+		$("#wr_body").removeClass( "mau2" )
+		$("#wr_body").addClass("mau1");
+		
+    });
+	 $("#mau2").click(function(){
+		$("#wr_body").removeClass( "mau1" )
+		$( "#wr_body" ).removeClass( "mau5" )
+		$( "#wr_body" ).removeClass( "mau4" )
+		$( "#wr_body" ).removeClass( "mau3" )
+		$("#wr_body").removeClass( "mau2" )
+        $("#wr_body").addClass("mau2");
+    });
+	
+	 $("#mau3").click(function(){
+		$("#wr_body" ).removeClass( "mau1" )
+		$( "#wr_body").removeClass( "mau2" )
+		$( "#wr_body" ).removeClass( "mau5" )
+		$( "#wr_body" ).removeClass( "mau4" )
+        $("#wr_body").addClass("mau3");
+    });
+	
+	$("#mau4").click(function(){
+		$("#wr_body" ).removeClass( "mau1" )
+		$( "#wr_body").removeClass( "mau2" )
+		$( "#wr_body" ).removeClass( "mau5" )
+		$( "#wr_body" ).removeClass( "mau3" )
+        $("#wr_body").addClass("mau4");
+    });
+	
+	$("#mau5").click(function(){
+		$("#wr_body" ).removeClass( "mau1" )
+		$( "#wr_body").removeClass( "mau2" )
+		$( "#wr_body" ).removeClass( "mau4" )
+		$( "#wr_body" ).removeClass( "mau3" )
+        $("#wr_body").addClass("mau5");
+    });
+	
+	$("#layout-boxed").click(function(){
+		$("#wr_body" ).removeClass( "layout-boxed" )
+		$( "#wr_body" ).removeClass( "layout-wide" )
+        $("#wr_body").addClass("container");
+        $("#wr_body").addClass("layout-boxed");
+    });
+	$("#layout-wide").click(function(){
+		$( "#wr_body" ).removeClass( "layout-boxed" )
+		$("#wr_body").removeClass( "container" )
+        
+    });
+	
+});
+</script>
+ 
+   <div class="flash">{{=response.flash or ''}}</div>
+ 	<div class="row wr_top_ivinh">
+		<div class="top_ivinh" >
+			<div id='content_top'>
+				<div class="col-md-5 hidden-phone hidden-tablet ">
+				 <p class='chao_mung'> Sàn giao dịch thương mại điện tử tỉnh Hà Tĩnh </p>
+				</div>
+				<div class="col-md-7 col-ms-12">
+				 {{=cms.box("menu-top-page")}}
+				</div>
+			</div>
+	    <div class='clearfix'></div>
+		</div>
+    </div>
+ <div id='wr_body' class="{{=class_style}} layout-wide container">
+ <div class="page-wrapper " id="container">
+    <div class="row wr_banner">
+		<div class="banner_ivinh">
+			<div class='container'>
+			<div id="wr_banner_top">
+			 
+					{{=cms.box("banner_top")}}
+				 
+			</div>
+			 
+			</div>
+		</div>
+    </div>
+	
+	<div class="row menu_ivinh">
+		<div class='container'>
+		 {{=cms.box("menu_main")}}
+		</div>
+    </div>
+	
+	
+	
+	<div class="row main_ivinh" id="connectedSortable_id_2">
+		<div class='container'>
+			
+			 <div class="col-md-9 content_ivinh">
+				<div id="content_ivinh">
+					
+				{{if request.args(0)!='home':}}
+				{{#=cms.box("menu_left")}}
+					<div class="breadcrumb">
+						{{from plugin_cms import CmsFolder }}
+						{{=XML(CmsFolder().breadcrumb(parent=request.args(0)))}}
+					</div>
+				{{pass}}
+					{{include}}
+				</div>
+			 </div>
+			 
+			 <div class="col-md-3  hidden-phone right_ivinh">
+				{{=cms.box("menu_phan_loai_doanh_nghiep")}}
+				{{=cms.box("logo_san")}}
+				{{=cms.box("lk_van_ban")}}
+				{{=cms.box("ho-tro-truc-tuyen")}}
+				
+				{{=cms.box("quang_cao_right")}}
+				{{=cms.box("box_quang_cao_right")}}
+			
+				
+				{{=cms.box("so-luot-truy-cap")}}
+				
+			 </div>
+			 
+		</div>
+    </div>
+
+	
+  </div>
+  
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55386abf77636216" async="async"></script>
+  <!-- end:#page-wrapper-->
+  </div>
+ 	
+    <div class="row background_all" id="bottom_ivinh">
+    	<div class='container'>
+			{{=cms.box("bottom")}}
+		</div>
+    </div>
+ </body>
+</html>

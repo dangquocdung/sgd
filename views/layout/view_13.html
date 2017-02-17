@@ -1,0 +1,12 @@
+{{extend 'layout/home_13.html'}}
+{{if request.function=='read':}}
+{{=cms.box('news_detail',tablename=request.args(1))}}
+
+
+<div class="fb-comments" data-href="http://hatinhtrade.com.vn{{=URL(c='portal',f='read',args=request.args)}}" data-version="v2.3" data-numposts="5"  data-order-by="time" data-width='100%'></div>
+{{else:}}
+{{=cms.box("list_news")}} 
+{{pass}}
+
+			
+

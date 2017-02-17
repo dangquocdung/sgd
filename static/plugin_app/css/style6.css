@@ -1,0 +1,119 @@
+@charset "utf-8";
+/* CSS Document */
+body { margin:0px; font-family:Arial, Helvetica, sans-serif;background:#39414A;}
+
+
+
+
+#container { padding:50px; font-size:12px; background:#39414A; padding-top:20px; }
+.lof-slidecontent, .lof-slidecontent a {
+	color:#FFF;	
+}
+.lof-slidecontent{
+	position:relative;
+	overflow:hidden;
+	border:#F4F4F4 solid 1px;
+}
+.lof-slidecontent .preload{
+	height:100%;
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:100000;
+	text-align:center;
+	background:#FFF
+}
+.lof-slidecontent .preload div{
+	height:100%;
+	width:100%;
+	background:transparent url(../images/load-indicator.gif) no-repeat scroll 50% 50%;
+}
+.lof-main-outer{
+	position:relative;
+	width:100%;
+	z-index:3px;
+	overflow:hidden;
+}
+/*******************************************************/
+.lof-main-item-desc{
+	z-index:100px;
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	background:url(../images/bg_trans.png);
+	height:100px;
+	padding:10px;
+}
+
+/* main flash */
+ul.lof-main-wapper{
+	/* margin-right:auto; */
+	background:transparent url(../images/load-indicator.gif) no-repeat scroll 50% 50%;
+	padding:0px;
+	margin:0;
+	position:relative;
+}
+
+ul.lof-main-wapper li{
+	overflow:hidden;
+	padding:0px;
+	margin:0 auto;
+	width: 100%;
+	text-align:center;
+	position:absolute;
+}
+.lof-opacity  li{
+	position:absolute;
+	top:0;
+	left:0;
+	float:inherit;
+}
+ul.lof-main-wapper li img{
+	padding:0px;	
+}
+
+/* item navigator */
+.lof-navigator-wapper {
+	position:absolute;
+	bottom:10px;
+	right:10px;
+	background:url(../images/transparent_bg.png) repeat;
+	padding:5px 0px;
+}
+.lof-navigator-outer{
+	position:relative;
+	z-index:100;
+	height:180px;
+	width:310px;
+	overflow:hidden;
+	color:#FFF;
+	float:left
+}
+ul.lof-navigator{
+	top:0;
+	padding:0;
+	margin:0;
+	position:absolute;
+	width:100%;
+}
+ul.lof-navigator li{
+	cursor:hand; 
+	cursor:pointer;
+	list-style:none;
+	padding:0;
+	margin-left:0px;
+	overflow:hidden;
+	float:left;
+	display:block;
+
+	text-align:center;
+
+}
+ul.lof-navigator li img{
+	border:#666 solid 3px;	
+}
+ul.lof-navigator li.active img, ul.lof-navigator li:hover img {
+	border:#A8A8A8 solid 3px;
+}

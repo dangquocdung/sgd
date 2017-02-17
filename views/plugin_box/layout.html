@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CMS - PLUGIN BOX</title>
+
+	<link href="{{=URL(r=request,c='static',f='jquery-ui/css/smoothness/jquery-ui.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{=URL(r=request,c='static',f='jquery-ui/css/ui-ligthness/jquery-ui-1.10.4.custom.min.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='jquery-ui/js/jquery-1.10.2.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='jquery-ui/js/jquery-ui-1.10.4.custom.min.js')}}"></script>
+	
+  
+	<link href="{{=URL(r=request,c='static',f='bootstrap/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{=URL(r=request,c='static',f='bootstrap/css/bootstrap-theme.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/js/bootstrap.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/js/bootstrap-popover.js')}}"></script>
+ 
+
+<script>
+  $(function() {
+    $( "#tabs-box" ).tabs();
+  });
+  </script> 
+
+<script type="text/javascript"><!--
+    // These variables are used by the web2py_ajax_init function in web2py_ajax.js (which is loaded below).
+    var w2p_ajax_confirm_message = "{{=T('Are you sure you want to delete this object?')}}";
+    var w2p_ajax_disable_with_message = "{{=T('Working...')}}";
+    var w2p_ajax_date_format = "{{=T('%Y-%m-%d')}}";
+    var w2p_ajax_datetime_format = "{{=T('%Y-%m-%d %H:%M:%S')}}";
+    var ajax_error_500 = '{{=T.M('An error occured, please [[reload %s]] the page') % URL(args=request.args, vars=request.get_vars) }}'
+    //--></script>
+{{
+response.files.insert(0,URL('static','css/calendar.css'))
+response.files.insert(1,URL('static','js/calendar.js'))
+response.files.insert(2,URL('static','js/web2py.js'))
+response.include_meta()
+response.include_files()
+}} 
+	<style>
+		.connectedSortable {border: 1px solid; margin:0px; min-height:80px;}
+		img {border: 1px solid; margin:3px;}
+	</style>
+	
+
+</head>
+<body>
+ 
+ 
+<div class="container">
+	<div class="row">
+		{{=box}}
+	</div> 
+</div> 
+</br>	
+</br>	
+<div class="container">
+	<div class="row">
+		{{=content}}
+	</div> 
+</div> 
+	
+
+<script>
+	// Get all items from a container
+	function getDiv(box){		
+		var cls = document.getElementById(box).className;
+		if (cls=="ivinhcmsbox-img") return '[[=cms.box("'+box+'")]]';
+		var div = '';
+		var childrens = document.getElementById(box).children;
+		for(var i = 0; i < childrens.length; i++) {
+			div += getDiv(childrens[i].id);
+		}		
+		cls = cls.replace(" connectedSortable","");
+		cls = cls.replace("connectedSortable","");
+		cls = cls.replace(" ui-sortable","");
+		return '<div class="'+cls+'" id="'+box+'">'+div+'</div>';
+	}	
+
+	function update(newfile){
+		var tmp = document.getElementById("filename").value.split('/');
+		var layout = tmp[tmp.length-1];
+		if (layout =='') return false;
+		if (newfile==1) {
+			var newlayout=prompt("Please enter new layout",".html");
+			if (newlayout==null) {
+				return false;
+			}	
+		} else {
+			var newlayout = layout; 
+		}
+		var container = getDiv("container");
+		$.ajax({
+			url: "{{=URL(r=request,c='plugin_box',f='update',args=request.args)}}",
+			type: "GET",
+			data: {'container':container,layout:layout,newlayout:newlayout},
+			cache: false,
+			success: function (html) {
+				//$('#tags_cloud').html(html);
+			}
+		});				
+	}			
+	
+	$(function(){
+
+		$('.connectedSortable').sortable({
+			connectWith: ".connectedSortable",
+			placeholder: "ui-state-highlight",
+			helper:'clone'
+		});
+
+	})	
+	 
+</script>
+	
+	
+</body>
+</html>

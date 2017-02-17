@@ -1,0 +1,23 @@
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_process/html5sortable/jquery.sortable.js')}}"></script>
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_process/jquery-menu/jquery-ui-1.10.3.custom.min.js')}}"></script>
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_process/jquery-menu/jquery.multi-open-accordion.js')}}"></script>
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_process/jquery-menu/jquery.cookie.js')}}"></script>
+<link href="{{=URL(r=request,c='static',f='plugin_process/jquery-menu/jquery-ui.css')}}" rel="stylesheet">
+
+<script src="{{=URL(r=request,c='static',f='plugin_app/menu_fish/superfish.js')}}" type="text/javascript"></script> 
+<link type="text/css" href="{{=URL(r=request,c='static',f='plugin_app/menu_fish/superfish.css')}}" rel="stylesheet" />
+<br/>
+
+<div class="accordion_subject" id="head_folder">
+	<ul class="sf-menu">
+		<li><a  href="{{=URL(c='plugin_auth',f='users')}}">Người dùng</a></li>
+		<li><a  href="{{=URL(c='plugin_auth',f='set_password')}}">Đặt lại mật khẩu</a></li>
+		<li><a  href="{{=URL(c='plugin_auth',f='permission')}}">Quyền</a></li>
+		<li><a  href="{{=URL(c='plugin_auth',f='group')}}">Nhóm NSD</a></li>
+		<li><a  href="{{=URL(c='plugin_auth',f='set_table')}}">Bảng dữ liệu</a></li>
+		<li><a  href="{{=URL(c='plugin_auth',f='set_level')}}">Dữ liệu</a></li>
+		<!-- <li><a  href="{{=URL(c='plugin_auth',f='init')}}">Thiết lập ban đầu</a></li> -->
+	</ul>
+	<div class="clearfix"></div>
+</div>
+

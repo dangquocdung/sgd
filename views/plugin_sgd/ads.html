@@ -1,0 +1,43 @@
+{{extend 'plugin_sgd/layout.html'}}
+{{if (auth.has_membership(role='admin') or auth.has_membership(role='ql_quang_cao')):}}
+  <div class="placeholders">
+	
+		<div class="placeholder">
+				
+			<a href="{{=URL(c='plugin_sgd',f='ads_img.html')}}">
+				  <img class="img-responsive" src="{{=URL(c='static',f='plugin_tools/images/ads.png')}}">
+				  <h4>Quản cáo banner</h4>
+			</a>
+		</div>
+		
+		<div class="placeholder">
+				
+			<a href="{{=URL(c='plugin_sgd',f='ads_product.html')}}">
+				  <img class="img-responsive" src="{{=URL(c='static',f='plugin_tools/images/product.png')}}">
+				  <h4>Quảng cáo sản phẩm</h4>
+			</a>
+		</div>
+		<div class="placeholder">
+				
+			<a href="{{=URL(c='plugin_sgd',f='edit_box.html',args=[119])}}">
+				  <img class="img-responsive" src="{{=URL(c='static',f='plugin_tools/images/product.png')}}">
+				  <h4>Quảng cáo html bên phải</h4>
+			</a>
+		</div>
+		
+		<div class="placeholder">
+				
+			<a href="{{=URL(c='plugin_sgd',f='edit_box.html',args=[120])}}">
+				  <img class="img-responsive" src="{{=URL(c='static',f='plugin_tools/images/product.png')}}">
+				  <h4>Quảng cáo html giữa trang chủ</h4>
+			</a>
+		</div>
+		
+		
+		
+</div>
+{{else:}}
+<h2>Bạn không có quyền trong quản lý quảng cáo</h2>
+{{pass}}
+<div class='clearfix'></div>
+{{=content}}

@@ -1,0 +1,119 @@
+<link href="{{=URL(r=request,c='static',f='plugin_attach/dragndrop.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{=URL(r=request,c='static',f='plugin_app/colorbox/colorbox.css')}}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_app/colorbox/jquery.colorbox.js')}}"></script>
+<style>
+#div-1a #myform {float:left;width:100%;}
+#div-1a #myform :after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+#div-1a table {width:100%;}
+
+#div-1a #myform span {    
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1); height:25px; padding:0 20px;background: #eee; /* Old browsers */
+	background: #eee -moz-linear-gradient(top, rgba(255,255,255,.2) 0%, rgba(0,0,0,.2) 100%); /* FF3.6+ */
+	background: #eee -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.2)), color-stop(100%,rgba(0,0,0,.2))); /* Chrome,Safari4+ */
+	background: #eee -webkit-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Chrome10+,Safari5.1+ */
+	background: #eee -o-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Opera11.10+ */
+	background: #eee -ms-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* IE10+ */
+	background: #eee linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* W3C */
+	border: 1px solid #aaa;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	padding: 4px 12px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	color: #444;
+	display: inline-block;
+	font-size: 1em; /** WEB2PY EDIT **/
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;
+	margin-bottom: 5px; /** WEB2PY EDIT **/
+	line-height: 21px;
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; 
+	margin-right:10px;
+	background-color: #4D90FE;
+    background-image: -moz-linear-gradient(center top , #4D90FE, #4787ED);
+    border: 1px solid #3079ED;
+    color: #FFFFFF;
+	
+	}
+
+
+#div-1a #myform span a {background:url(../images/print.png) no-repeat left center ; display:block; padding-left:23px; height:25px;line-height:25px;}
+#div-1a #upfile1 a {background:url(../images/mail-attachment.png) no-repeat left center !important; display:block; padding-left:23px; height:25px;line-height:25px;}
+#div-1a span a { color: #FFFFFF; text-decoration:none;	}
+#div-1a input[type='text'] {width:100%!important;}
+#div-1a textarea {width:100%!important;}
+#div-1a .so_kyhieu input {width:40%!important; font-size:15px; font-weight:bold;}
+#filedrag {margin:0!important; padding:0!important; border:none!important; float:left; width:100%;}
+
+#filedrag table {width:100%;
+	border-bottom:1px solid #EEE5CA;
+	background:#FFFCF4;
+	border-radius:10px;
+}
+
+
+#filedrag table tr td {
+	border-top:1px solid #EEE5CA;
+	line-height:30px;
+	padding-left:10px;
+}
+#filedrag table tr td #extract {background:url(../images/extract.png) no-repeat left; height:25px; display:block; padding-left:25px; text-decoration:none; pointer:crosshair;}
+#filedrag table tr td #delete {background:url(../images/delete.gif) no-repeat left; height:25px; display:block; padding-left:20px; text-decoration:none; pointer:crosshair;}
+#filedrag table tr .filesize   {width:70px;}
+#filedrag table tr .filesize  a{background:url(../images/taive.png) no-repeat left; height:25px; display:block; padding-left:27px; text-decoration:none; pointer:crosshair;}
+#filedrag table tr .extract {width:85px;}
+#filedrag table tr .delete {width:55px;}
+#filedrag table tr .view {background:url(../images/search1.gif) no-repeat left; height:25px; display:block; padding-left:25px; text-decoration:none; pointer:crosshair;}
+#filedrag table tr a.view :hove { color:#F00;}
+#filedrag table tr {
+}
+#filedrag .filetype_xls {
+	background:url(../images/admin/xsl-icon.png) no-repeat left;
+	padding-left:20px;
+}
+#filedrag .filetype_doc {
+	background:url(../images/admin/doc-icon.png) no-repeat left;
+	padding-left:20px;
+}
+#filedrag .filetype_pdf {
+	background:url(../images/admin/PDF-icon.png) no-repeat left;
+	padding-left:20px;
+}
+#filedrag .filetype_html {
+	background:url(../images/admin/PDF-icon.png) no-repeat left;
+	padding-left:20px;
+}
+
+</style>
+
+<script type="text/javascript"> 
+	function gView(url){
+		var ext = url.substring(url.lastIndexOf('.') + 1);
+		var src=url;
+		if (/^(tiff|ppt|pps|doc|docx|rtf|xls|xlsx)$/.test(ext)) {
+			var src="http://docs.google.com/viewer?url='+url+'&embedded=true";
+		}
+		window.open(src,"Preview","width=800,height=700,toolbar=no,location=no,directories=no,status=no,menubar=no,left=600,top=0")
+	
+	}
+</script> 
+
+
+
+<div id='1a'>
+	{{=form}}
+	<div id="filedrag">
+		<div id="progress">{{=table}}</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_attach/dragndrop.js')}}"></script>

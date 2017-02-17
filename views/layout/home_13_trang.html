@@ -1,0 +1,172 @@
+<!--[if HTML5]><![endif]-->
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js" lang="{{=T.accepted_language or 'en'}}">
+ <!--<![endif]-->
+ <head>
+ {{=cms.metadc()}}
+  <!--[if !HTML5]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+  <![endif]-->
+  <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+  <!-- Always force latest IE rendering engine
+       (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <meta charset="utf-8"/>
+  <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+  <meta content="{{=request.application}}" name="application-name"/>
+  <!-- Speaking of Google, don't forget to set your site up:
+       http://google.com/webmasters -->
+  <meta content="" name="google-site-verification"/>
+  <!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+        device-width: Occupy full width of the screen in its current orientation
+        initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+        user-scalable = yes allows the user to zoom in -->
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="{{=URL('static','images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
+   <link href="{{=URL('static','images/favicon.png')}}" rel="apple-touch-icon">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+       HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr.custom.js')}}">
+    </script>
+    <!-- include stylesheets -->
+    {{
+  response.files.insert(0,URL('static','css/web2py.css'))
+  response.files.insert(1,URL('static','bootstrap/css/bootstrap.css'))
+  response.files.insert(1,URL('static','bootstrap/css/bootstrap-theme.css'))
+  response.files.insert(2,URL('static','css/bootstrap-responsive.min.css'))
+  response.files.insert(3,URL('static','css/web2py_bootstrap.css'))
+  response.files.insert(3,URL('static','css/user.css'))
+  response.files.append(URL(request.application,'static','plugin_app/js/clock.js'))
+  }}
+
+  {{include 'web2py_ajax.html'}}
+    <script src="{{=URL('static','js/bootstrap.min.js')}}">
+    </script>
+    <script src="{{=URL('static','js/web2py_bootstrap.js')}}">
+    </script>
+    <script src="{{=URL('static','js/slidernews.js')}}">
+    </script>
+    <script src="{{=URL('static','superfish/dist/js/hoverIntent.js')}}">
+    </script>
+    <script src="{{=URL('static','superfish/dist/js/superfish.js')}}">
+    </script>
+	  <script src="{{=URL('static','js/jquery.printElement.js')}}">
+    </script>
+    <link href="{{=URL('static', 'superfish/dist/css/superfish.css')}}" rel="stylesheet" type="text/css"/>
+    <noscript>
+     <link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css"/>
+    </noscript>
+   </link>
+  </link>
+ </head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+{{class_style=''}}
+{{ if request.cookies.has_key('style_id_sgd'):}}
+	{{class_style = request.cookies['style_id_sgd'].value}}
+{{pass}}
+{{ if request.cookies.has_key('style_layout'):}}
+	{{class_style = class_style + ' '+request.cookies['style_layout'].value}}
+{{pass}}
+ <body class="{{=class_style}}">
+
+ <script>
+$(document).ready(function(){
+    $("#mau1").click(function(){
+       
+		$( "body" ).removeClass( "mau3" )
+		$( "body" ).removeClass( "mau2" )
+		 $("body").addClass("mau1");
+		
+    });
+	 $("#mau2").click(function(){
+		$( "body" ).removeClass( "mau1" )
+		$( "body" ).removeClass( "mau3" )
+        $("body").addClass("mau2");
+    });
+	
+	 $("#mau3").click(function(){
+		$( "body" ).removeClass( "mau1" )
+		$( "body" ).removeClass( "mau2" )
+        $("body").addClass("mau3");
+    });
+	$("#layout-boxed").click(function(){
+		$( "body" ).removeClass( "layout-boxed" )
+		$( "body" ).removeClass( "layout-wide" )
+        $("body").addClass("container");
+        $("body").addClass("layout-boxed");
+    });
+	$("#layout-wide").click(function(){
+		$( "body" ).removeClass( "layout-boxed" )
+		$( "body" ).removeClass( "container" )
+        
+    });
+	
+});
+</script>
+  <div class="page-wrapper " id="container">
+   <div class="flash">{{=response.flash or ''}}</div>
+    
+ 	<div class="row wr_top_ivinh">
+		<div class="top_ivinh" >
+			<div id='content_top'>
+				<div class="col-md-5 hidden-phone hidden-tablet ">
+				 <p class='chao_mung'> Sàn giao dịch thương mại điện tử tỉnh Hà Tĩnh </p>
+				</div>
+				<div class="col-md-7 col-ms-12">
+				 {{=cms.box("menu-top-page")}}
+				</div>
+			</div>
+	    <div class='clearfix'></div>
+		</div>
+    </div>
+    <div class="row wr_banner">
+		<div class="banner_ivinh background_all">
+			<div class='container'>
+			<div class="col-md-12" id="wr_banner_top">
+				<div class="col-md-7" style="  text-align: center;">
+					{{=cms.box("banner_top")}}
+				</div>
+			</div>
+			 
+			</div>
+		</div>
+    </div>
+	
+	<div class="row menu_ivinh">
+		<div class='container'>
+		 {{=cms.box("menu_main")}}
+		</div>
+    </div>
+
+	
+	
+	<div class="row main_ivinh" id="connectedSortable_id_2">
+		{{include}}
+   </div>
+	<div class='clearfix'>
+		<br/>
+		<br/>
+		<br/>
+	</div>
+    <div class="row background_all" id="bottom_ivinh">
+    	<div class='container'>
+			{{=cms.box("bottom")}}
+		</div>
+    </div>
+	
+	
+
+	
+	
+  </div>
+  <!-- end:#page-wrapper-->
+ </body>
+</html>

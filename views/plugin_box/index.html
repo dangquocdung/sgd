@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Sortable - Connect lists</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  
+  
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{=URL(r=request,c='static',f='bootstrap/dist/css/bootstrap-theme.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='bootstrap/dist/js/bootstrap-popover.js')}}"></script>   
+	
+	<link href="{{=URL(r=request,c='static',f='plugin_box/contextMenu/context.standalone.css')}}" rel='stylesheet' type='text/css'/>
+	<link href="{{=URL(r=request,c='static',f='plugin_box/contextMenu/context.bootstrap.css')}}" rel='stylesheet' type='text/css'/>
+	<link href="{{=URL(r=request,c='static',f='plugin_box/contextMenu/demo.css')}}" rel='stylesheet' type='text/css'/>
+	<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_box/contextMenu/context.js')}}"></script>
+ 
+	<style>
+	div {border: 1px solid; margin:0px;}
+	#sortable1, #sortable2 , #sortable3{ list-style-type: none; margin: 0; padding: 0 0 2.5em; float: left; margin-top: 10px; width:100%;}
+	#sortable4 { list-style-type: none; margin: 0; padding: 0 0 2.5em; margin-right: 10px;}
+	#sortable1 li, #sortable2 li, #sortable3 li , #sortable4 li{ margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em;}
+	.ui-state-highlight { height: 2.0em; line-height: 1.2em; }
+	.clearfix {clear: both;}
+	</style>
+	<script>
+	$(function() {
+	$( "#sortable1, #sortable2, #sortable3, #sortable4" ).sortable({
+		connectWith: ".connectedSortable",
+		placeholder: "ui-state-highlight",
+		update: function(){
+			var itemStr = getItems('.container');
+			$.ajax({
+				url: "{{=URL(r=request,c='plugin_box',f='update',args=request.args)}}",
+				type: "GET",
+				data: {'box':itemStr},
+				cache: false,
+				success: function (html) {
+					//$('#tags_cloud').html(html);
+				}
+			});				
+		}		
+	}).disableSelection();
+	});
+	
+	
+	// Get all items from a container
+	function getItems(container)
+	{
+		var columns = [];
+		
+		$(container+ ' ul.connectedSortable').each(function(){
+			columns.push($(this).sortable('toArray').join(','));
+		});
+	 
+		return columns.join('|');
+	}
+	
+	</script>
+		
+	
+</head>
+<body>
+
+<script>
+	var divid='';
+	function getId(e){
+		divid=e.target.id;
+	}
+
+	function makeid(){
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		for( var i=0; i < 10; i++ )
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+		return text;
+	}
+
+	$(document).ready(function(){
+		context.init({preventDoubleContext: false});
+		context.settings({compress: true});
+		context.attach('.contextmenu', [
+			{header: 'Add div'},
+			{text: 'Back', href: '#'},
+			{text: 'Reload', href: '#'},
+			{divider: true},
+			{text: 'Sub menu', subMenu: [
+				{text: 'Col 4', action: function(e){
+					$( "#"+divid ).append( '<div class="col-md-4 contextmenu" id="'+makeid()+'" onmousemove="getId(event)">COL4</div>' );
+				}},
+				{text: 'Col 6', action: function(e){
+					$( "#"+divid ).append( '<div class="col-md-6 contextmenu" id="'+makeid()+'" onmousemove="getId(event)">COL6</div>' );
+				}}
+			]},
+			{divider: true},
+			{text: 'New Col', action: function(e){
+				alert(divid);
+				//$( "#"+divid ).append( '<div class="row contextmenu" id="'+makeid()+'"></div>' );
+			}},
+			{text: 'New row', action: function(e){
+				var id = makeid();
+				$( "#"+divid ).append( '<div class="row contextmenu" id="'+id+'" onmousemove="getId(event)">ROW ID = '+id+'</div>' );
+			}}
+		]);
+	});	
+</script>
+
+
+<table> 
+	<tr>
+		<td width=300px style='border: 1px solid #000;'>
+		<div class="box" style="height: 750px; overflow-y: scroll;">
+			<ul id="sortable1" class="connectedSortable">
+			{{rows = db(db.box.id>0).select()}}
+			{{for row in rows:}}
+				<li id = "{{=row.id}}"><img src="{{=URL(c='static',f='plugin_box/avatar',args=[row.avatar])}}" width="250px" height="80px"></img></li>
+			{{pass}}
+			</ul>
+		</div>
+		</td>		
+		<td style='border: 1px solid #000;'> 
+			<table>
+				<tr style='border: 1px solid #000;'>
+					<td>
+						<div class="header-footer" style="height: 200px; overflow-y: scroll;">	
+							<ul id="sortable1" class="connectedSortable">
+							{{rows = db(db.box.id>0).select()}}
+							{{for row in rows:}}
+								<li id = "{{=row.id}}"><img src="{{=URL(c='static',f='plugin_box/avatar',args=[row.avatar])}}" width="1000px" height="100px"></img></li>
+							{{pass}}
+							</ul>
+						</div>	 
+					</td>
+				</tr>	
+				<tr style='border: 1px solid #000;'>	
+					<td>
+						<div class="container" id ="container">
+							<div class="row contextmenu" id ="row1" onmousemove="getId(event)">
+							ABC
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>			
+ 
+ 
+<br/><br/><br/>
+			
+
+<div class='clearfix'></div>
+    
+</body>
+</html>

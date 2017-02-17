@@ -1,0 +1,114 @@
+/*Form Default design (dung cho quan ly bieu mau) */
+#cell_update{border: 1px solid #CCC;}
+.form_default_design  {background:#eee; border: 1px solid #CCC; padding:5px}
+.form_default_design  table {border: 1px solid #CCC;  }
+.form_default_design  table tr td input {height: 23px; width:118px; }
+.form_default_design  table tr td input#add_row{ width:20px;}
+.form_default_design  table tr td input:hover {color:#F00; }
+.form_default_design  table tr td input:focus {color:#F00; }
+.form_default_design  table tr td input.integer {text-align:right; font-family:Tahoma, Geneva, sans-serif; font-size:14px;}
+.form_default_design  table tr td label {font-size:12px;line-height:25px; margin-left:5px; font-family:Tahoma, Geneva, sans-serif;}
+.form_default_design  table .tr0 td {text-align:center; height:25px; line-height:25px;}
+.form_default_design  table tr td {border-bottom: 1px solid #ccc; border-left: 1px solid #CCC;}
+.form_default_design  table tr td.td_add_remove input  { float:left; width:40px;}
+
+
+#cell_click {padding:10px 0;}
+#cell_click table {border:2px solid #ccc !important; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold;}
+
+#cell_click table tr td {line-height:40px; padding:0 3px;}
+#cell_click table  textarea {width:828px; height:37px; font-family:Arial, Helvetica, sans-serif; font-size:16px;}
+#cell_click table input  { height:23px;}
+#cell_click table .cell_input{height:30px;}
+#cell_click table .cell_input input {width:70px; margin-top:10px; float:left;}
+#cell_click table .cell_input select {margin-top:10px;}
+#cell_click table .cell_input span{ padding-top:10px;}
+#cell_click table select   { height:23px;}
+#cell_click table .string { width:150px !important;}
+#cell_click table tr.cell_target .string {margin-top:3px;}
+
+/*Form Default view (danh cho repost) */
+
+.form_default {width:900px;padding:10px;background:#FFF;border: 1px solid #666;	}
+.form_default #form_content tr{ line-height:30px;}
+.form_default #form_content tr{ line-height:30px;}
+.form_default #form_content tr input{height:23px; width:200px;}
+.form_default #form_content tr td input:hover {color:#F00; }
+.form_default #form_content tr td input:focus {color:#F00; }
+.form_default #form_content tr td input.integer {text-align:right; font-family:Tahoma, Geneva, sans-serif; font-size:14px;}
+.form_default #form_content tr td label {font-size:12px;line-height:25px; margin-left:5px; font-family:Tahoma, Geneva, sans-serif;}
+.form_default #form_content table  {border-top:1px solid #000;border-right:1px solid #000;}
+.form_default #form_content table tr td {border-bottom: 1px solid #000; border-left: 1px solid #000; }
+.form_default #form_content table tr td.string {padding-left:5px;}
+.form_default #form_content tr td input.integer {text-align:right; font-family:Tahoma, Geneva, sans-serif; font-size:14px;}
+.form_default #form_content tr td.integer {text-align:right; font-family:Tahoma, Geneva, sans-serif; font-size:14px;}
+.form_default #form_content tr td input.double {text-align:right; font-family:Tahoma, Geneva, sans-serif; font-size:14px; padding-right:5px;}
+.form_default #form_content tr td.double {text-align:right; font-family:Tahoma, Geneva, sans-serif; font-size:14px; padding-right:5px;}
+.form_default #form_content .tr0 td{background:#eee; text-align:center; }
+.form_default #form_content .tr0 td label  {padding:0 10px;}
+.form_default #form_content tr .td0 {background:#eee; }
+.form_default #form_content tr .td0 label { display:inline-block; }
+.form_default .td_add_remove #add_row {width:15px;}
+
+.form_default #form_content tr td .col_unit { margin:0 auto ; padding:0 10px; font-size:12px;}
+
+#file_attachment table {border:1px solid #000;}
+#file_attachment table tr td { text-align:center; line-height:30px; border-bottom:1px solid #FFF; }
+#file_attachment table tr th {background:#DCE6F4; color:#000; padding:0 20px; line-height:35px;}
+#file_attachment table tr a { font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:30px; padding:0 10px;}
+
+
+#tabs-2 table select  {max-width:450px;}
+#target_datacols table {border:none; padding:5px;}
+#target_datacols table .col_input .string {width:300px; height:23px;}
+#target_datacols table textarea  {height:25px;}
+#target_datacols table .col_input input {margin:0;}
+#target_datacols table input {margin:2px;}
+
+.select-report {height:40px; line-height:40px; background: none repeat scroll 0 0 #DCE6F5; border: 1px solid #EEE5CA; border-radius: 5px 5px 5px 5px; padding:0 20px; margin:5px 0; color:#000; font-size:14px; }
+
+#form_content table .tr0 {text-align:center;}
+
+#form_content table tr .td0 .label_2{ float:left;padding:0 !important;}
+#form_content table tr .td0 .label_3{ float:left;padding:0 !important;}
+#form_content table tr .td0 .label_4{ float:left;padding:0 !important;}
+#form_content table .label_1 {font-size:14px !important; }
+#form_content table .label_2 { font-size:12px; padding-left:10px;}
+#form_content table .label_3 { font-size:12px !important; padding-left:20px;}
+#form_content table .label_4 { font-size:12px !important; padding-left:30px; font-weight:inherit;}
+#form_content table .col_index { font-size:12px !important; padding-left:30px; font-weight:bold;}
+
+
+.form_default_design table tr td .label_1 {font-size:14px !important;}
+.form_default_design table tr td .label_2 { font-size:12px !important; padding-left:15px;}
+
+/*set width input form*/
+.form_width30 #form_content tr input {  width:30px !important;}
+.form_width40 #form_content tr input {  width:40px !important;}
+.form_width50 #form_content tr input {  width:50px !important;}
+.form_width60 #form_content tr input {  width:60px !important;}
+.form_width70 #form_content tr input {  width:70px !important;}
+.form_width80 #form_content tr input {  width:80px !important;}
+.form_width90 #form_content tr input {  width:90px !important;}
+.form_width100 #form_content tr input{  width:100px !important;}
+.form_width110 #form_content tr input{  width:110px !important;}
+.form_width120 #form_content tr input{  width:120px !important;}
+.form_width130 #form_content tr input{  width:130px !important;}
+.form_width140 #form_content tr input{  width:140px !important;}
+.form_width150 #form_content tr input{  width:150px !important;}
+.form_width160 #form_content tr input{  width:160px !important;}
+.form_width170 #form_content tr input{  width:170px !important;}
+.form_width180 #form_content tr input{  width:180px !important;}
+.form_width190 #form_content tr input{  width:190px !important;}
+
+
+/* form text*/
+.form_text {width:100% !important;}
+.form_text #form_content {width:900px; margin:0 auto; padding:20px 10px; border: 1px solid #E2DAC1;  border-radius: 7px 7px 7px 7px; background:#F6F6F6;}
+.form_text #form_content textarea.text {width:900px !important; height:100px;margin:10px 0; font-size:14px; font-family:"Times New Roman", Times, serif; background:#FFF; padding:10px; border: 1px solid #E2DAC1;  border-radius: 7px 7px 7px 7px; }
+.form_text #form_content textarea:hover {background:#FFF;}
+
+.form_text #form_content table {border:none;}
+.form_text #form_content table tr td {border:none;}
+.form_text #form_content tr .td0 {background:none;}
+.form_text #form_content .tr0  {background:none;}

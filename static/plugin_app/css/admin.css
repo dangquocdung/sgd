@@ -1,0 +1,93 @@
+.row {padding:15px; margin:0px !important;}
+
+.navbar-ivinh  { background:#614889 !important;}
+.navbar-ivinh a {color:#FFF!important;}
+
+.placeholder {text-align:center; margin-top:10px; float:left; margin:0 20px; width:120px;}
+.placeholder img {
+display: inline-block;
+border-radius: 50%;
+border:2px solid #ccc;
+width:110px;
+height:100px;
+}
+.placeholder a  { 
+	text-decoration:none;
+	
+}
+.placeholder a  h4{ 
+	color:inherit;
+	font-size:12px; font-weight:bold;
+}
+.navbar-right .open  a{background:#614889 !important;}
+.navbar-right .open  .dropdown-menu{background:#614889 !important;}
+
+#gian_hang .serch_by_name {width:300px; float:left;}
+#gian_hang .btn-group {margin-right:10px;}
+#gian_hang #toolbar_gian_hang {float:right; width: 100%; background: #ccc; padding: 15px;}
+#gian_hang .wr_view_gian_hang  {width:100%; display:inline-block; margin-top:20px;}
+#gian_hang .wr_view_gian_hang .item_gian_hang {float:left;  width:200px; height:200px; list-style:none; cursor:pointer; }
+#gian_hang .wr_view_gian_hang .item_gian_hang .image { background:url(../images/gian_hang/gian_hang.png) no-repeat center center; display:block; width:100%; height:150px;}
+#gian_hang .wr_view_gian_hang .gian_hang_gian-hang-cho-duyet .image {
+ filter: alpha(opacity=30);
+   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=30);
+   opacity:0.3;
+   -moz-opacity: 0.30; }
+#gian_hang .wr_view_gian_hang .item_gian_hang .name  {text-align:center; width:100%;}
+.modal-backdrop {}
+.ivinh_modal {width:95% !important;  }
+
+#detai_gian_hang .tab-pane {padding:15px;}
+
+#view_ads {margin-top:20px;display: inline-table;}
+
+#view_ads th {text-align:center; background:#ccc;}
+#view_ads td {text-align:center; vertical-align:middle;}
+#view_ads .image img {max-height:140px; border:1px solid #FFF; padding:2px; max-width:200px;}
+
+#wr_don_hang .wr_toolbar { padding-bottom:10px;}
+#wr_don_hang .wr_toolbar .btn-group  {margin-right:10px;}
+
+.wr_toolbar .vote_item {background:#ccc; border-radius: 50%; width:20px; height:20px; display:block; float:left;    text-align: center; color:#fff;  cursor:pointer; }
+.wr_toolbar .vote_item:hover {background:#F00;}
+.wr_toolbar .active {background:#F00; border-radius: 50%; width:20px; height:20px; display:block; float:left;    text-align: center; color:#fff;   }
+.wr_toolbar .pull-right  {width:135px;}
+
+.wr_template li {list-style:none; width:200px; float:left; text-align:center;}
+.wr_template li .images { height:200px; }
+.wr_template li img { width:200px; }
+#widget_san_pham .ads_product_image img {height:150px;}
+#widget_san_pham .product_name {width:100%; text-align:center; display:inline-block; padding:5px 0;}
+.btn  a { color:#FFF; text-decoration:none;}
+.btn  a:hover{ color:#FFF; text-decoration:none;}
+
+.act_search_produc {margin-top:20px; display: inline-block;
+}
+.act_search_produc ul {float:left;width:200px; height:220px;}
+.act_search_produc ul li { text-align:center; list-style:none;}
+.act_search_produc img {height:120px; width:180px;}
+.act_search_produc .product_name {height:60px; display: inline-block;}
+
+.vote {
+  background: url(../../images/rating_star.png) no-repeat right;
+  background-position: 25px -170px;
+  width:200px ; 
+  height:40px;
+}
+.vote0 {background-position: 25px -170px;}
+.vote1 {background-position: 25px -132px;}
+.vote2{background-position: 25px -100px;}
+.vote3 {background-position: 25px -66px;}
+.vote4 {background-position: 25px -32px;}
+.vote5 {background-position: 25px 0px;}
+
+#giao_dich .collapse.in  { display:table-cell;padding:0 20px !important;}
+#giao_dich .collapse table { background:#eee; }
+#giao_dich .on_show {float:left;}
+.giao_dich .input-group .btn {margin:0 5px;}
+#giao_dich_chi_tiet ul { }
+#giao_dich_chi_tiet ul li { }
+.giao_dich .panel-heading {min-height:50px;}
+.giao_dich .panel-heading .datetime {width:200px; height:30px;}
+.giao_dich .panel-heading .title_name {font-size:18px; font-weight:bold;}
+

@@ -1,0 +1,277 @@
+<!--[if HTML5]><![endif]-->
+<!DOCTYPE html xmlns:fb='http://www.facebook.com/2008/fbml'>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js" lang="{{=T.accepted_language or 'en'}}">
+ <!--<![endif]-->
+ <head>
+ {{=cms.metadc()}}
+  <!--[if !HTML5]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+  <![endif]-->
+  <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+  <!-- Always force latest IE rendering engine
+       (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <meta charset="utf-8"/>
+  <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+  <meta content="{{=request.application}}" name="application-name"/>
+  <!-- Speaking of Google, don't forget to set your site up:
+       http://google.com/webmasters -->
+  <meta content="" name="google-site-verification"/>
+  <!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+        device-width: Occupy full width of the screen in its current orientation
+        initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+        user-scalable = yes allows the user to zoom in -->
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="{{=URL('static','images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
+   <link href="{{=URL('static','images/favicon.png')}}" rel="apple-touch-icon">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+       HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr.custom.js')}}">
+    </script>
+    <!-- include stylesheets -->
+    {{
+  response.files.insert(0,URL('static','css/web2py.css'))
+  response.files.insert(1,URL('static','bootstrap/css/bootstrap.css'))
+  response.files.insert(1,URL('static','bootstrap/css/bootstrap-theme.css'))
+  response.files.insert(2,URL('static','css/bootstrap-responsive.min.css'))
+  response.files.insert(3,URL('static','css/web2py_bootstrap.css'))
+  response.files.insert(3,URL('static','css/gian_hang.css'))
+  response.files.insert(3,URL('static','css/tool_admin.css'))
+  response.files.append(URL(request.application,'static','plugin_app/js/clock.js'))
+  }}
+
+  {{include 'web2py_ajax.html'}}
+    <script src="{{=URL('static','js/bootstrap.min.js')}}">
+    </script>
+    <script src="{{=URL('static','js/web2py_bootstrap.js')}}">
+    </script>
+    <script src="{{=URL('static','js/slidernews.js')}}">
+    </script>
+    <script src="{{=URL('static','superfish/dist/js/hoverIntent.js')}}">
+    </script>
+    <script src="{{=URL('static','superfish/dist/js/superfish.js')}}">
+    </script>
+	  <script src="{{=URL('static','js/jquery.printElement.js')}}">
+    </script>
+    <link href="{{=URL('static', 'superfish/dist/css/superfish.css')}}" rel="stylesheet" type="text/css"/>
+    <noscript>
+     <link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css"/>
+    </noscript>
+   </link>
+  </link>
+  <meta property="fb:app_id" content="{693454617454149}" />
+</head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body id="gian_hang">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3&appId=693454617454149";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+	
+{{rows = cms.get_content(tablename='cong_ty',folder=request.args(0))}}
+{{cong_ty = ''}}
+{{if len(rows)>0:}}
+{{cong_ty = rows[0]}}
+{{pass}}
+{{ from plugin_cms import CmsFolder
+    folder_id_ivinh=CmsFolder().get_folder(request.args(0))  }}
+	
+	{{if auth.has_permission('quan_tri_gian_hang', 'folder', folder_id_ivinh):}}
+	<div class="row wr_top_ivinh">
+		<div class="top_ivinh">
+			<div class='container'>
+				<div class="col-md-6 hidden-phone hidden-tablet ">
+				</div>
+				<div class="col-md-6 col-ms-12">
+				 {{=cms.box("gian-hang-menu-top")}}
+				</div>
+			</div>
+		<div class='clearfix'></div>
+		</div>
+	</div>
+	{{pass}}
+  <div class="page-wrapper " id="container">
+   <div class="flash">{{=response.flash or ''}}</div>
+   
+
+	
+    <div class="row banner_ivinh">
+		<div class='container'>
+		{{if cong_ty:}}
+				{{if cong_ty.banner_top:}}
+						{{=IMG(_src=cms.get_avatar('cong_ty',cong_ty.banner_top),_id="logo_page")}}
+					{{if cong_ty.employ_logo:}}
+						<h2 id='site_name'>{{=cong_ty.name}} </h2>
+					{{pass}}
+				{{else:}}
+					<div class="col-md-12">
+						<h2 id='title_page_site'> {{=cms.folder_name(request.args(0))}}</h2>
+					</div>
+				{{pass}}
+		{{else:}}
+			<div class="col-md-12">
+				<h2 id='title_page_site'> {{=cms.folder_name(request.args(0))}}</h2>
+			</div>
+		{{pass}}
+		
+		</div>
+    </div>
+	
+	<div class="row menu_ivinh">
+		<div class='container'>
+		
+		{{=cms.box("menu_gian_hang")}}
+			
+		</div>
+    </div>
+	<br/>
+	<br/>
+	<br/>
+	<div class="row main_ivinh" id="connectedSortable_id_2">
+		<div class='container'>
+			<div class="col-md-3 hidden-tablet hidden-phone left_ivinh">
+				{{=cms.box("gian_hang_box_gio_hang")}}
+				{{if cong_ty:}}
+					{{if cong_ty.linh_vuc:}}
+					{{folder = cms.define_folder()}}
+						<div class="ivinhcmsbox" id="gian_hang_menu_left">	 
+							<div id="menu_left" class="background_all">
+							<h2 class="box_title"> Lĩnh vực</h2>
+								<div class="box_content">
+									<div id="box_content">
+										<ul class="sf-menu sf-js-enabled sf-arrows">
+										
+										{{for folder_id in cong_ty.linh_vuc:}}
+											{{=LI(A(folder[folder_id].label,_href=URL(c='portal',f='folder',args=[request.args(0),folder[folder_id].name],vars=dict(page='san_pham'))))}}
+										{{pass}}
+										
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					{{pass}}
+					{{if cong_ty.quang_cao:}}
+						<div id="gian_hang_quang_cao">	 
+								<div class="box_content">
+									<div id="box_content">
+										{{=XML(cong_ty.quang_cao)}}
+									</div>
+								</div>
+						</div>
+
+					{{pass}}
+				{{pass}}
+				
+				{{=cms.box("gian_hang_san_pham_top_read")}}
+			</div>
+			 <div class="col-md-9 content_ivinh">
+				<div id="content_ivinh">
+					{{if request.function =='folder':}}
+						
+						{{if request.vars.page =='gioi_thieu':}}
+							{{=cms.box("page_gian_hang")}}
+						{{elif request.vars.page =='quang_cao':}}
+							{{=cms.box("page_gian_hang")}}
+						{{elif request.vars.page =='tuyen_dung':}}
+							{{=cms.box("page_gian_hang")}}
+							<!-- <div id="list_news">
+								<h2 id="title_page"><span class='title_name'>Giới thiệu</span></h2>
+								<div class="content_list_news">
+									<br/>
+									{{if cong_ty:}}
+										{{=XML(cong_ty.htmlcontent)}}
+									{{pass}}
+								</div>
+							</div> -->
+						{{elif  request.vars.page =='san_pham':}}
+							
+									{{=cms.box("gian_hang_list_products")}}
+						{{elif  request.vars.page =='tin_tuc':}}
+							{{=cms.box("gian_hang_list_news")}} 
+						{{elif  request.vars.page =='quan-ly-gian-hang':}}
+							{{=cms.box("quan-ly-gian-hang")}}	
+
+						{{elif  request.vars.page =='thong_tin_cong_ty':}}
+							{{=cms.box("quan-ly-gian-hang")}}
+							{{=cms.box("edit_cong_ty")}} 
+						{{elif  request.vars.page =='mng_san_pham':}}
+							{{=cms.box("quan-ly-gian-hang")}}
+							{{=cms.box("mng_san_pham")}} 
+						{{elif  request.vars.page =='mng_tin_tuc':}}
+							{{=cms.box("quan-ly-gian-hang")}}
+							{{=cms.box("mng_tin_tuc")}} 
+						{{elif request.vars.page =='bao_cao':}}
+							{{=cms.box("quan-ly-gian-hang")}}
+							{{=cms.box("gian_hang_bao_cao")}} 	
+						{{elif  request.vars.page =='don_hang':}}
+							{{=cms.box("gian_hang_don_hang")}} 
+						
+							
+						{{elif  request.vars.page =='lien_he':}}
+						<div id="list_news">
+							<h2 id="title_page"><span class='title_name'>Thông tin liên hệ</span></h2>
+							<div class="content_list_news">
+								<br/>
+									{{if cong_ty:}}
+										<h2 style="text-align:center; font-size:24px; text-transform:uppercase; margin:10px;"> 	{{=cong_ty.name}}</h2>
+									   <h4 style="text-align:center; font-size:14px; text-transform:uppercase; margin:10px;"> 	{{=cong_ty.dia_chi}}</h4>
+									   <h4 style="text-align:center; font-size:14px;  margin:10px;"> 	Người đại diện:<b>{{=cong_ty.nguoi_dai_dien}} </b>   &nbsp;&nbsp; Điện thoại liên hệ:<b>{{=cong_ty.phone}} </b> </h4>
+									   <div class="text-center">
+											{{if cong_ty.is_maps:}}
+												{{=XML(cong_ty.is_maps)}}
+											{{pass}}
+										</div>
+									{{pass}}
+							</div>
+						</div>
+						{{elif  request.vars.page =='checkout':}}
+						<div id="order_view">
+							<h2 id="title_page"><span class='title_name'>Thông tin đặt hàng</span></h2>
+							<div class="content_list_news">
+								<br/>
+								<div id="box_gio_hang">
+									{{= LOAD(c='plugin_app',f='view_order',args=request.args,vars=request.vars,ajax=False) }}
+								</div>
+							</div>
+						</div>
+							
+						{{else:}}
+							{{=cms.box("gian_hang_list_products")}}
+							{{=cms.box("gian_hang_list_news")}} 
+						{{pass}}
+					{{pass}}
+					
+					{{include}}
+				</div>
+			 </div>
+		</div>
+    </div>
+	<div class="clearfix"><br/></div>
+    <div class="row background_all" id="bottom_ivinh">
+    	<div class='container'>
+			<BR/>
+			{{if cong_ty:}}
+				<h2 style="text-align:center; font-size:18px; text-transform:uppercase; margin:10px;"> 	{{=cong_ty.name}}</h2>
+				<h4 style="text-align:center; font-size:14px; text-transform:uppercase; margin:10px;"> 	{{=cong_ty.dia_chi}}</h2>
+			{{pass}}
+				<br/>
+		</div>
+    </div>
+	
+  </div>
+  <!-- end:#page-wrapper-->
+ </body>
+</html>

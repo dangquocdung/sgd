@@ -1,0 +1,68 @@
+{{
+import uuid, os,datetime
+exec('import applications.%s.modules.xlwt as xl' % request.application) 
+filename=os.path.join(request.folder,'private','%s.xls' % uuid.uuid4()) 
+workbook = xl.Workbook(encoding='utf-8') 
+ws0 = workbook.add_sheet('sheet0',cell_overwrite_ok=True)
+head = xl.easyxf('font: bold on;borders: top 1, bottom 1, left 1, right 1; align: wrap on, vert centre, horiz left')
+index = xl.easyxf('borders: top 1, bottom 1, left 1, right 1; align: wrap on, vert centre, horiz center')
+cell = xl.easyxf('borders: top 1, bottom 1, left 1, right 1; align: wrap on, vert centre, horiz left')
+r =0
+c=0
+
+pagename = 'San pham'
+ws0.write(0,0,str(T('STT')),head)
+ws0.write(0,1,str(T('Người nhận hàng')),head)
+ws0.write(0,2,str(T('Số điện thoại')),head)
+ws0.write(0,3,str(T('Địa chỉ')),head)
+ws0.write(0,4,str(T('Lời nhắn')),head)
+
+r= 1
+import datetime
+don_hang = cms.define_table('don_hang')
+start_time = request.vars.start_time or datetime.datetime.now().strftime("%Y-%m-%d 00:00:00")
+end_time = request.vars.end_time or datetime.datetime.now().strftime("%Y-%m-%d 23:59:00")
+rows = cms.db((don_hang.tao_luc >= start_time)&(don_hang.tao_luc <= end_time)).select(orderby=~cms.db.don_hang.id)
+i = 1
+for row in rows: 
+	ws0.write(r,0,i,cell)
+	ws0.write(r,1,row.nguoi_nhan_hang,cell)
+	ws0.write(r,2,row.dien_thoai,cell)
+	ws0.write(r,3,row.dia_chi,cell)
+	ws0.write(r,4,row.loi_nhan,cell)
+	if request.args(0)=='chitiet':
+		don_hang_item = cms.define_table('don_hang_item')
+		san_pham = cms.define_table('san_pham')
+		rows_i = cms.db(don_hang_item.r_don_hang ==row.id).select()
+		if len(rows_i)>0:
+			r+=1
+			ws0.write(r,0,'',cell)
+			ws0.write(r,1,str(T('Gian hàng')),cell)
+			ws0.write(r,2,str(T('Tên sản phẩm')),cell)
+			ws0.write(r,3,str(T('Số lượng')),cell)
+			ws0.write(r,4,str(T('Giá bán')),cell)
+			for row_i in rows_i:
+				r+=1
+				sp = san_pham[row_i.r_san_pham]
+				ws0.write(r,0,'',cell)
+				ws0.write(r,1,sp.r_folder.label,cell)
+				ws0.write(r,2,sp.name,cell)
+				ws0.write(r,3,row_i.so_luong ,cell)
+				ws0.write(r,4,row_i.gia_ban,cell)
+				
+			pass	
+		pass
+	pass
+	r+=1
+	i+=1
+	
+	
+pass
+workbook.save(filename) 
+data = open(filename,'rb').read() 
+os.unlink(filename) 
+response.headers['Content-Type']='application/vnd.ms-excel'
+response.headers['Content-disposition'] = 'attachment;filename="'+pagename+'_'+str(datetime.date.today())+'.xls"'  
+filename = str(datetime.date.today()) + filename
+response.write(data,escape=False)
+}}

@@ -1,0 +1,123 @@
+<!--[if HTML5]><![endif]-->
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js" lang="{{=T.accepted_language or 'en'}}">
+ <!--<![endif]-->
+ <head>
+  <title>
+   {{=response.title or request.application}}
+  </title>
+  <!--[if !HTML5]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+  <![endif]-->
+  <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+  <!-- Always force latest IE rendering engine
+       (even in intranet) & Chrome Frame
+       Remove this if you use the .htaccess -->
+  <meta charset="utf-8"/>
+  <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+  <meta content="{{=request.application}}" name="application-name"/>
+  <!-- Speaking of Google, don't forget to set your site up:
+       http://google.com/webmasters -->
+  <meta content="" name="google-site-verification"/>
+  <!--  Mobile Viewport Fix
+        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+        device-width: Occupy full width of the screen in its current orientation
+        initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+        user-scalable = yes allows the user to zoom in -->
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="{{=URL('static','images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
+   <link href="{{=URL('static','images/favicon.png')}}" rel="apple-touch-icon">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+       HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr.custom.js')}}">
+    </script>
+    <!-- include stylesheets -->
+    {{
+  response.files.insert(0,URL('static','css/web2py.css'))
+  response.files.insert(1,URL('static','bootstrap/css/bootstrap.min.css'))
+  response.files.insert(1,URL('static','bootstrap/css/bootstrap-theme.css'))
+  response.files.insert(2,URL('static','css/bootstrap-responsive.min.css'))
+  response.files.insert(3,URL('static','css/web2py_bootstrap.css'))
+  response.files.insert(3,URL('static','css/user.css'))
+  }}
+
+  {{include 'web2py_ajax.html'}}
+    <script src="{{=URL('static','js/bootstrap.min.js')}}">
+    </script>
+    <script src="{{=URL('static','js/web2py_bootstrap.js')}}">
+    </script>
+    <script src="{{=URL('static','js/slidernews.js')}}">
+    </script>
+    <script src="{{=URL('static','superfish/dist/js/hoverIntent.js')}}">
+    </script>
+    <script src="{{=URL('static','superfish/dist/js/superfish.js')}}">
+    </script>
+    <link href="{{=URL('static', 'superfish/dist/css/superfish.css')}}" rel="stylesheet" type="text/css"/>
+    <noscript>
+     <link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css"/>
+    </noscript>
+   </link>
+  </link>
+ </head>
+ <body>
+  <div class="page-wrapper container" id="container">
+   <div class="page" id="connectedSortable_id_0">
+    <div class="col-md-12 " id="header_ivinh">
+     {{=cms.box("banner_top")}}
+			{{=cms.box("menu_main")}}
+		
+    </div>
+	<p class="clearfix"></p>
+    <div class="main_ivinh" id="connectedSortable_id_2">
+     <div class="col-md-3 hidden-tablet hidden-phone" id="left_ivinh">
+      {{=cms.box("dao-duc-hcm")}}
+      {{=cms.box("menu_left")}}
+	  {{=cms.box("box-thong-bao")}}
+	  {{=cms.box("box-tin-tuc")}}
+	  {{=cms.box("box-diembao-rss")}}
+	  {{=cms.box("so-luot-truy-cap")}}
+     </div>
+     <div class="col-md-6" id="content_ivinh">
+      <!-- {{=cms.box("home_noibat")}}{{=cms.box("top-list-news")}}{{=cms.box("box-diembao-rss")}}{{=cms.box("giai_dieu_que_huong")}} -->
+	  {{include}}
+     </div>
+	 <div class="col-md-3 hidden-tablet hidden-phone" id="right_ivinh">
+		{{=cms.box("ban_do_tinh_ht")}}
+		{{=cms.box("lich-lam-viec")}}
+		{{=cms.box("van-phong-dien-tu")}}
+		{{=cms.box("vb-chi-dao-dieu-hanh")}}
+		{{=cms.box("dich-vu-cong")}}
+		{{=cms.box("dich-vu-cong-truc-tuyen")}}
+		{{=cms.box("qldtbtxh")}}
+
+
+		{{=cms.box("lien_ket_website_tinh")}}
+		{{=cms.box("giai_dieu_que_huong")}}
+		
+     </div>
+	
+	 <div class='hidden-desktop'>
+		  {{=cms.box("menu_left")}}
+		</div>
+		 <p class="clearfix"></p>
+	 {{=cms.box("menu_main_bottom")}}
+	 <p class="clearfix"></p>
+    </div>
+  
+		<p class="clearfix"></p>
+   </div>
+     <div class="col-md-12 " id="bottom_ivinh">
+     {{=cms.box("bottom")}}
+	 
+    </div>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55386abf77636216" async="async"></script>
+  <!-- end:#page-wrapper-->
+ </body>
+</html>

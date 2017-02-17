@@ -1,0 +1,107 @@
+{{extend 'layout/home_13_trang.html'}}
+
+	<div class="row main_ivinh" id="connectedSortable_id_2">
+		
+		<div class='container dang_ky'>
+		<div class="breadcrumb">
+			{{from plugin_cms import CmsFolder }}
+			{{=XML(CmsFolder().breadcrumb(parent=request.args(0)))}}
+		</div>
+			<div class="panel panel-default">
+				<div class="panel-body" id="wr_tao_gian_hang">
+					<div class="col-md-12">
+						<h2 id="title_page"><span class="title_name">Khởi tạo gian hàng</span></h2>
+						<form action="{{=URL(c='plugin_sgd',f='add_gian_hang')}}">
+						<table class='table'>
+							<tr>
+								<th>Giao diện mẫu:</th>
+								<td>
+									<ul class='wr_template'>
+										<li>
+											<div class='images'>
+												<img src="{{=URL(c='static',f='images/template/t1.jpg')}}">
+											</div>
+											<input type="radio" name="template" value="t1" checked>
+										</li>
+										<li>
+											<div class='images'>
+												<img src="{{=URL(c='static',f='images/template/t2.jpg')}}">
+											</div>
+											<input type="radio" name="template" value="t2">
+										</li>
+										<li>
+											<div class='images'>
+												<img src="{{=URL(c='static',f='images/template/t3.jpg')}}">
+											</div>
+											<input type="radio" name="template" value="t3">
+										</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>Tên gian hàng:</th>
+								<td>
+									<input type="text" class="form-control" placeholder="Tên gian hàng" name="ten_gian_hang" id='ten_gian_hang' onkeyup='remove_unicode1()'>
+								</td>
+							</tr>
+							<tr>
+								<th>Địa chỉ URL:</th>
+								<td>
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Địa chỉ URL" name="ten_url" id="ten_url" onkeyup='remove_unicode()'>
+										{{ajax = "ajax('%s', ['ten_url','ten_gian_hang'], 'message-box')"%(URL(c='plugin_sgd',f='check_url1')) }}
+										{{=SPAN(INPUT(_type='button',_class='btn btn-primary',_value=T('Kiểm tra khả dụng'),_onclick=ajax),_class='input-group-btn') }}
+									</div>
+									<p style='color:#f00;'>(*) Không cho phép sử dụng tiếng việt có dấu và các kí hiệu ngoại trừ ký hiệu - </p>
+									
+									<div class='message-box' id='message-box'>
+									{{=INPUT(_type='submit',_class='btn btn-primary',_id='btn_submit',_value=T('Tạo gian hàng'),_disabled=True)}}
+								</div>
+								</td>
+							</tr>
+							
+						</table> 
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			 
+		</div>
+    </div>
+	
+	 <script type="text/javascript">
+				function remove_unicode() 
+				{  	
+					document.getElementById('btn_submit').disabled = true;
+					str =  document.getElementById('ten_url').value;
+					str= str.toLowerCase();  
+					str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");  
+					str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");  
+					str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i");  
+					str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");  
+					str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");  
+					str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");  
+					str= str.replace(/đ/g,"d");  
+					str= str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'| |\"|\&|\#|\[|\]|~|$|_/g,""); 
+					str= str.replace(/-+-/g,"-"); //thay thế 2- thành 1- 
+					document.getElementById("ten_url").value = str;
+					
+				} 
+				function remove_unicode1() 
+				{  
+					document.getElementById('btn_submit').disabled = true;
+					str =  document.getElementById('ten_gian_hang').value;
+					str= str.toLowerCase();  
+					str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");  
+					str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");  
+					str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i");  
+					str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");  
+					str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");  
+					str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");  
+					str= str.replace(/đ/g,"d");  
+					str= str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'| |\"|\&|\#|\[|\]|~|_/g,"-"); 
+					str= str.replace(/-+-/g,"-"); //thay thế 2- thành 1- 
+					document.getElementById("ten_url").value = str;
+				} 
+			 </script>

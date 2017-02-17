@@ -1,0 +1,55 @@
+{{ response.files.append(URL('static','plugin_attach/dragndrop.css')) }}
+{{ #extend 'layout_web2py.html' }}
+{{ extend 'plugin_app/layout.html' }}
+
+<link href="{{=URL(r=request,c='static',f='plugin_app/colorbox/colorbox.css')}}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{=URL(r=request,c='static',f='plugin_app/colorbox/jquery.colorbox.js')}}"></script>
+
+<style>
+	#div-1a {
+		position:relative;
+		top:0;
+		left:0;
+		width:500px;
+		float:left;
+	}
+	#div-1b {
+		position:relative;
+		top:20px;
+		left: 20px;
+		right:0;
+		float:left;
+	}
+</style>
+
+<div id = "div-1a">
+	{{=form}}
+	<div id="filedrag"><div id="progress">{{=table}}</div></div>
+	<div id='box_edit_default'></div>
+</div>
+<div id="div-1b">
+	<div id="content"></div>
+</div>
+
+<script src="/app/static/plugin_attach/dragndrop.js"></script>
+<script type="text/javascript"> 
+	function gView(url){
+		var ext = url.substring(url.lastIndexOf('.') + 1);
+		var element=document.getElementById("content");
+		if (/^(tiff|ppt|pps|doc|docx|rtf|xls|xlsx)$/.test(ext)) {
+			element.innerHTML= '<iframe src="http://docs.google.com/viewer?url='+url+'&embedded=true" width="600" height="700" style="border: none;"></iframe>';
+		}
+		else if (/^(pdf|png|jpg|jpeg|bmp|txt)$/.test(ext)) {
+			element.innerHTML= '<iframe src="'+url+'" width="600" height="700" style="border: none;"></iframe>';
+		}
+		else if (/^(odt)$/.test(ext)) {
+			//loadDaFun();
+			//var odfcanvas = new odf.OdfCanvas(content);
+			//odfcanvas.load(url);
+			element.innerHTML= '<iframe src="../webodf/webodf.html?url=http://127.0.0.1:8000/app/static/plugin_viewer/webodf/test1.odt" width="600" height="700" style="border: none;"></iframe>';
+		}
+		else {
+			element.innerHTML= 'ok';
+		}
+	}
+</script> 

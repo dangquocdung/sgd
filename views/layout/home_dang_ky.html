@@ -1,0 +1,36 @@
+{{extend 'layout/home_13_trang.html'}}
+	<div class="row main_ivinh" id="connectedSortable_id_2">
+		
+		<div class='container dang_ky'>
+		<div class="breadcrumb">
+			{{from plugin_cms import CmsFolder }}
+			{{=XML(CmsFolder().breadcrumb(parent=request.args(0)))}}
+		</div>
+			<div class="col-md-4">
+				<div class="border-1">
+					<div class="images">
+						<img src="http://cdn.timviecnhanh.com/asset/home/img/dang-nhap/tim-viec.png" alt="Đăng nhập người tìm việc">
+					</div>
+					<a href="{{=URL(c='plugin_auth',f='login',args=['register'])}}" class="btn btn-big btn-danger"  style="width: 100%;">
+						Tạo nhà cung cấp
+					</a>
+				</div>			</div>
+			 <div class="col-md-4">
+				<div class="border-1">
+                    <div class="images">
+                        <img src="http://cdn.timviecnhanh.com/asset/home/img/dang-nhap/tuyen-dung.png" alt="Đăng nhập nhà tuyển dụng">
+                    </div>
+                   <a href="{{=URL(c='portal',f='folder',args=['tao-tin-tim-mua'])}}" class="btn btn-big btn-danger" style="width: 100%;">
+                       Tạo tin tìm mua
+                    </a>
+                </div>
+			 </div>
+			
+			<div class="col-md-4">
+				
+				{{=cms.box("box-nhan-tin-email")}}
+			</div>
+			 
+			 
+		</div>
+    </div>

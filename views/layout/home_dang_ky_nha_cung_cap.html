@@ -1,0 +1,17 @@
+{{extend 'layout/home_13_trang.html'}}
+	<div class="row main_ivinh" id="connectedSortable_id_2">
+		
+		<div class='container dang_ky'>
+		<div class="breadcrumb">
+			{{from plugin_cms import CmsFolder }}
+			{{=XML(CmsFolder().breadcrumb(parent=request.args(0)))}}
+		</div>
+			<div class="panel panel-default">
+				<div class="panel-body" id="wr_nha_cung_cap">
+					{{=cms.box("add_cong_ty")}}
+					
+				</div>
+			</div>
+			 
+		</div>
+    </div>

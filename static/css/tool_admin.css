@@ -1,0 +1,58 @@
+.top_ivinh {background: url(../images/bg-top.jpg) repeat-x; height:30px;}
+
+.banner_ivinh .container .col-md-12{background:url(../images/banner_gian_hang.jpg) no-repeat center; padding:10px;}
+.wr_account ul {margin:0;}
+.wr_account ul li {width:100%; border-bottom:1px dotted #ccc; text-align:left;}
+
+.quan-ly-gian-hang li {float:left; list-style:none; margin:10px;
+background: none repeat scroll 0 0 #FFFCF4;
+border: 1px solid #EEE5CA;
+border-radius: 10px;
+-webkit-border-radius: 10px;
+khtml-border-radius: 10px;
+
+width:145px; 
+}
+.quan-ly-gian-hang li a span{color: #3199A3; margin: 8px 0; text-align:center; display:block; font-size:15px;}
+.quan-ly-gian-hang li a img {width:100%; padding: 5px 15px;}
+#content_ivinh #delete_record__row {display:none !important;}
+#content_ivinh #cong_ty_id__row {display:none !important;}
+#content_ivinh #san_pham_id__row {display:none !important;}
+#content_ivinh #tintuc_id__row {display:none !important;}
+.content_ivinh .ivinhcmsbox #title_page .text-right {float: right;
+font-size: 13px;
+color: #FFF;
+line-height: 42px;
+margin-right: 10px;}
+
+#box_gio_hang .pttt li { float:left; width:200px; list-style:none;}
+
+#gian-hang-menu-top {display: inline-block; float:right;}
+#gian-hang-menu-top li {float:left; list-style:none;   }
+#gian-hang-menu-top li a {margin:0 5px; background: url(../images/icon-menu-top.png) no-repeat left center;line-height:30px;  padding-left: 20px; text-decoration:none; color:#767676;}
+#gian-hang-menu-top .li-group_user a{ background-position: 0px -0px;  }
+#gian-hang-menu-top .wr_account a { background:none;  margin:0; padding:0;}
+#gian-hang-menu-top li a:hover { color:#0150a2; }
+#gian-hang-menu-top .li-trangchu a{background-position: 0px -41px;}
+#gian-hang-menu-top .li-dangki a{background-position: 0px -61px;}
+#gian-hang-menu-top .li-dangnhap a{background-position: 0px 0px;}
+#gian-hang-menu-top .li-trogiup a{background-position: 0px -20px;}
+#gian-hang-menu-top .li-lienhe a{background-position: 0px -102px;}
+#gian-hang-menu-top .li-sitemap a{background-position: 0px -83px;}
+#gian-hang-menu-top .li-group_help a { background-position: 0px -20px;}
+#wr_list_order .btn-group {padding-right:10px;}
+
+.banner_ivinh {position:relative;}
+#site_name {  position: absolute;
+  z-index: 1;
+  top: 30px;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#box_content_quan_tam {height:300px; text-align:center;}
+#box_content_quan_tam img{height:220px;}
+

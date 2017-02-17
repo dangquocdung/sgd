@@ -1,0 +1,15 @@
+{{extend 'layout/home_13.html'}}
+<div id="page_home">
+	<div id="list_news">
+		<div id="order_view">
+			<h2 id="title_page"><span class='title_name'>Thông tin đặt hàng</span></h2>
+			<div class="content_list_news">
+				<br/>
+				<div id="box_gio_hang">
+					{{= LOAD(c='plugin_app',f='view_order',args=request.args,vars=request.vars,ajax=False) }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
